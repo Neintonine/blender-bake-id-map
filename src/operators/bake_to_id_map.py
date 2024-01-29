@@ -6,7 +6,7 @@ import bpy
 
 class BakeToIDMapOperator(bpy.types.Operator):
     bl_idname = "object.bake_to_id_map"
-    bl_label = "Bake to ID Map"
+    bl_label = "Bake ID Mask"
 
     def execute(self, context):
 

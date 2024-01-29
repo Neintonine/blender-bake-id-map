@@ -8,7 +8,7 @@ from . panels.panel_info import BakeToIDInfoPanel
 from . properties.bake_to_id import BakeToIDProperties
 
 bl_info = {
-    "name": "Bake to ID Map",
+    "name": "Bake ID Mask",
     "author": "iedSoftworks",
     "description": "",
     "blender": (2, 80, 0),
