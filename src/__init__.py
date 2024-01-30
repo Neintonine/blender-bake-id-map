@@ -1,3 +1,12 @@
+bl_info = {
+    "name": "Bake ID Mask",
+    "author": "iedSoftworks",
+    "description": "",
+    # !VERSION
+    "blender": (2, 92, 0),
+    "category": "Object"
+}
+
 import bpy
 
 from . panels.panel_options import BakeToIDOptionsPanel
@@ -6,14 +15,6 @@ from . operators.bake_to_id_map import BakeToIDMapOperator
 from . panels.panel import BakeToIDMapPanel
 from . panels.panel_info import BakeToIDInfoPanel
 from . properties.bake_to_id import BakeToIDProperties
-
-bl_info = {
-    "name": "Bake ID Mask",
-    "author": "iedSoftworks",
-    "description": "",
-    "blender": (2, 80, 0),
-    "category": "Object"
-}
 
 classes = (
     BakeToIDMapOperator,
@@ -24,12 +25,13 @@ classes = (
     BakeToIDProperties,
 )
 
-def register():
 
+def register():
     for cls in classes:
         bpy.utils.register_class(cls)
 
     setattr(bpy.types.Scene, 'bake_to_id_props', bpy.props.PointerProperty(type=BakeToIDProperties))
+
 
 def unregister():
     for cls in reversed(classes):

@@ -1,6 +1,7 @@
 import bpy
 
 from .. operators.bake_to_id_map import BakeToIDMapOperator
+from ..types import get_source
 
 
 class BakeToIDInfoPanel(bpy.types.Panel):
@@ -16,5 +17,7 @@ class BakeToIDInfoPanel(bpy.types.Panel):
 
         props = context.scene.bake_to_id_props
 
+        source = get_source(props.source)
+
         layout.label(text="Selected Object-Count: " + str(len(context.selected_objects)))
-        layout.label(text="Estimated ID-Count: " + str(BakeToIDMapOperator.count_ids(context, props)))
+        layout.label(text="Estimated ID-Count: " + str(source.estimate_ids(context, props)))
