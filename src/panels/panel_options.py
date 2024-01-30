@@ -1,4 +1,8 @@
+import textwrap
+
 import bpy
+
+from src.types import get_source, get_target
 
 
 class BakeToIDOptionsPanel(bpy.types.Panel):
@@ -15,31 +19,15 @@ class BakeToIDOptionsPanel(bpy.types.Panel):
         props = context.scene.bake_to_id_props
 
         layout.prop(props, "source")
+        source = get_source(props.source)
         source_settings_box = layout.box()
-        source_settings = self.get_source_settings(props)
-        for setting in source_settings:
+        for setting in source.connected_properties:
             source_settings_box.prop(props, setting)
 
         layout.separator()
 
         layout.prop(props, "target")
+        target = get_target(props.target)
         target_settings_box = layout.box()
-        target_settings = self.get_target_settings(props)
-        for setting in target_settings:
+        for setting in target.connected_properties:
             target_settings_box.prop(props, setting)
-
-    def get_source_settings(self, props):
-        if props.source == 'MATERIAL_INDEX':
-            return [
-                'source_materials_remove_all'
-            ]
-
-        return []
-
-    def get_target_settings(self, props):
-        if props.target == 'VERTEX_COLORS':
-            return [
-                'target_vertex_color_attribute_name'
-            ]
-
-        return []

@@ -3,6 +3,8 @@ import math
 
 import bpy
 
+from .. types import (get_source, get_target)
+
 
 class BakeToIDMapOperator(bpy.types.Operator):
     bl_idname = "object.bake_to_id_map"
@@ -22,17 +24,10 @@ class BakeToIDMapOperator(bpy.types.Operator):
 
         return {'FINISHED'}
 
-    @staticmethod
-    def count_ids(context, props):
-        count = 0
-        if props.source == 'MATERIAL_INDEX':
-            for obj in context.selected_objects:
-                count += len(obj.material_slots)
-
-        return count
-
     def paint_id_mask(self, context, props):
-        targets = self.get_targets(context, props)
+        source = get_source(props.source)
+
+        targets = source.get_targets(context)
 
         if len(targets) < 1:
             return
@@ -53,71 +48,6 @@ class BakeToIDMapOperator(bpy.types.Operator):
 
             colors.append(colorsys.hls_to_rgb(h, l, s))
 
-        self.paint_targets(props, targets, colors)
-        self.after_painting(context, props)
-
-    def get_targets(self, context, props):
-        if props.source == 'MATERIAL_INDEX':
-            return self.get_material_targets(context)
-
-        return []
-
-    def get_material_targets(self, context):
-        targets = []
-        for obj in context.selected_objects:
-            if not obj.material_slots: continue
-
-            mesh = obj.data
-            if len(obj.material_slots) < 2:
-                targets.append((mesh, mesh.polygons))
-                continue
-
-            polygonMaterials = {}
-            for poly in mesh.polygons:
-                if poly.material_index not in polygonMaterials:
-                    polygonMaterials[poly.material_index] = []
-
-                polygonMaterials[poly.material_index].append(poly)
-
-            for polygons in polygonMaterials.values():
-                targets.append((mesh, polygons))
-
-        return targets
-
-    def paint_targets(self, props, targets, colors):
-        if props.target == 'VERTEX_COLORS':
-            self.paint_targets_vertex_colors(props, targets, colors)
-
-    def paint_targets_vertex_colors(self, props, targets, colors):
-        sortedTargets = {}
-        for i in range(len(targets)):
-            target = targets[i]
-            obj = target[0]
-            indecies = target[1]
-
-            if obj not in sortedTargets:
-                sortedTargets[obj] = []
-
-            sortedTargets[obj].append((indecies, colors[i]))
-
-        layer_name = props.target_vertex_color_attribute_name
-        for mesh in sortedTargets:
-            if layer_name in mesh.vertex_colors:
-                mesh.vertex_colors.remove(mesh.vertex_colors[layer_name])
-
-            vertex_color_layer = mesh.vertex_colors.new(name=layer_name)
-
-            for (indecies, color) in sortedTargets[mesh]:
-                for polygon in indecies:
-                    for idx in polygon.loop_indices:
-                        vertex_color_layer.data[idx].color = (color[0], color[1], color[2], 1.0)
-
-    def after_painting(self, context, props):
-        if props.source == 'MATERIAL_INDEX':
-            self.after_painting_source_material_index(props, context)
-            return
-
-    def after_painting_source_material_index(self, props, context):
-        if props.source_materials_remove_all:
-            for obj in context.selected_objects:
-                obj.data.materials.clear()
+        target = get_target(props.target)
+        target.paint_targets(props, targets, colors)
+        source.after_painting(context, props)

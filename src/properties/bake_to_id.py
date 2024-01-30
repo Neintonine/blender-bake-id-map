@@ -1,19 +1,19 @@
 from bpy.types import (PropertyGroup)
 from bpy.props import (EnumProperty, BoolProperty, IntProperty, StringProperty)
 
+from src.types import get_source_enum, get_targets_enum
+
 
 class BakeToIDProperties(PropertyGroup):
     source: EnumProperty(
-        items=[
-            ('MATERIAL_INDEX', 'Material Index', "It takes the material index as ID basis", 0)
-        ],
+        items=get_source_enum(),
         name="Source",
         description="From where should the IDs be taken",
         default = "MATERIAL_INDEX"
 
     )
     target: EnumProperty(
-        items=[('VERTEX_COLORS', 'Vertex Colors', "It bakes the ID to the vertex colors", 0)],
+        items=get_targets_enum(),
         name="Target",
         description="To where should the IDs should be baked to",
         default="VERTEX_COLORS"
