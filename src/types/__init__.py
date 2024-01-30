@@ -1,9 +1,11 @@
 from . sources import material_index as source_mat_index
+from . sources import object as source_object
 
 from . targets import vertex_colors as target_vertex_colors
 
 _sources = [
-    source_mat_index
+    source_mat_index,
+    source_object
 ]
 
 _targets = [

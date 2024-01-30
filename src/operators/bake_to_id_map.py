@@ -50,4 +50,5 @@ class BakeToIDMapOperator(bpy.types.Operator):
 
         target = get_target(props.target)
         target.paint_targets(props, targets, colors)
-        source.after_painting(context, props)
+        if 'after_painting' in dir(source):
+            source.after_painting(context, props)
