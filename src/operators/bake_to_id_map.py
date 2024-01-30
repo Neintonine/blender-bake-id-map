@@ -3,7 +3,8 @@ import math
 
 import bpy
 
-from .. types import (get_source, get_target)
+from .. types.sources import get_source
+from .. types.targets import get_target
 
 
 class BakeToIDMapOperator(bpy.types.Operator):

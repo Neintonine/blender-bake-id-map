@@ -1,7 +1,8 @@
 from bpy.types import (PropertyGroup)
 from bpy.props import (EnumProperty, BoolProperty, IntProperty, StringProperty)
 
-from src.types import get_source_enum, get_targets_enum
+from src.types.sources import get_source_enum
+from src.types.targets import get_targets_enum
 
 
 class BakeToIDProperties(PropertyGroup):
@@ -21,8 +22,8 @@ class BakeToIDProperties(PropertyGroup):
         name="Source",
         description="From where should the IDs be taken",
         default="MATERIAL_INDEX"
-
     )
+
     target: EnumProperty(
         items=get_targets_enum(),
         name="Target",
@@ -30,7 +31,7 @@ class BakeToIDProperties(PropertyGroup):
         default=get_targets_enum()[0][0]
     )
 
-    source_materials_remove_all : BoolProperty(
+    source_materials_remove_all: BoolProperty(
         name="Remove all source materials",
         default=False,
         description="Removes every material except the first one."

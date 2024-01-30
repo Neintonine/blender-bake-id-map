@@ -2,7 +2,8 @@ import textwrap
 
 import bpy
 
-from src.types import get_source, get_target
+from .. types.sources import get_source
+from .. types.targets import get_target
 
 
 class BakeToIDOptionsPanel(bpy.types.Panel):
@@ -22,14 +23,17 @@ class BakeToIDOptionsPanel(bpy.types.Panel):
 
         layout.prop(props, "source")
         source = get_source(props.source)
-        source_settings_box = layout.box()
-        for setting in source.connected_properties:
-            source_settings_box.prop(props, setting)
+
+        if len(source.connected_properties) > 0:
+            source_settings_box = layout.box()
+            for setting in source.connected_properties:
+                source_settings_box.prop(props, setting)
 
         layout.separator()
 
         layout.prop(props, "target")
         target = get_target(props.target)
-        target_settings_box = layout.box()
-        for setting in target.connected_properties:
-            target_settings_box.prop(props, setting)
+        if len(target.connected_properties) > 0:
+            target_settings_box = layout.box()
+            for setting in target.connected_properties:
+                target_settings_box.prop(props, setting)

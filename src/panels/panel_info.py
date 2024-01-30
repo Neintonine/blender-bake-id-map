@@ -1,7 +1,6 @@
 import bpy
 
-from .. operators.bake_to_id_map import BakeToIDMapOperator
-from ..types import get_source
+from .. types.sources import get_source
 
 
 class BakeToIDInfoPanel(bpy.types.Panel):
