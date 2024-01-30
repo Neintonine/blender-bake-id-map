@@ -5,11 +5,22 @@ from src.types import get_source_enum, get_targets_enum
 
 
 class BakeToIDProperties(PropertyGroup):
+    selection_mode: EnumProperty(
+        items=[
+            ("SINGLE", "Only active element", "Only use the currently selected element", 0),
+            ("MULTIPLE_SEPARATE", "Use Selection, separate", "It performs the transfer for every selected element, but each get there own ids", 1),
+            ("MULTIPLE_COMBINED", "Use Selection, combined", "It performs the transfer for every selected element, combining the ids", 2)
+        ],
+        name="Selection Mode",
+        description="Specifies how the 3D View-Selection is gonna be used.",
+        default="MULTIPLE_SEPARATE"
+    )
+
     source: EnumProperty(
         items=get_source_enum(),
         name="Source",
         description="From where should the IDs be taken",
-        default = "MATERIAL_INDEX"
+        default="MATERIAL_INDEX"
 
     )
     target: EnumProperty(

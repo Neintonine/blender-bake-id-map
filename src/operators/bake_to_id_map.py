@@ -27,7 +27,7 @@ class BakeToIDMapOperator(bpy.types.Operator):
     def paint_id_mask(self, context, props):
         source = get_source(props.source)
 
-        targets = source.get_targets(context)
+        targets = self.get_targets(context, source, props)
 
         if len(targets) < 1:
             return
@@ -49,6 +49,35 @@ class BakeToIDMapOperator(bpy.types.Operator):
             colors.append(colorsys.hls_to_rgb(h, l, s))
 
         target = get_target(props.target)
-        target.paint_targets(props, targets, colors)
+        self.paint_targets(props, target, targets, colors)
         if 'after_painting' in dir(source):
             source.after_painting(context, props)
+
+    def get_targets(self, context, source, props):
+        if props.selection_mode == 'SINGLE':
+            return source.get_targets([context.active_object])
+
+        if props.selection_mode == 'MULTIPLE_COMBINED':
+            return source.get_targets(context.selected_objects)
+
+        if props.selection_mode == 'MULTIPLE_SEPARATE':
+            result = []
+            for obj in context.selected_objects:
+                if obj.type != 'MESH':
+                    continue
+
+                obj_targets = source.get_targets([obj])
+                result.append(obj_targets)
+
+            return result
+
+        raise ValueError('Invalid selection_mode')
+
+    def paint_targets(self, props, target, targets, colors):
+        if props.selection_mode == 'MULTIPLE_SEPARATE':
+            for targetList in targets:
+                target.paint_targets(props,targetList, colors)
+
+            return
+
+        target.paint_targets(props, targets, colors)

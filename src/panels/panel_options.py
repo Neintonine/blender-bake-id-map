@@ -15,6 +15,8 @@ class BakeToIDOptionsPanel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        layout.use_property_split = True
+        layout.use_property_decorate = False  # No animation.
 
         props = context.scene.bake_to_id_props
 
