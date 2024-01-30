@@ -6,9 +6,9 @@ connected_properties = [
     'source_materials_remove_all'
 ]
 
-def get_targets(context):
+def get_targets(objects):
     targets = []
-    for obj in context.selected_objects:
+    for obj in objects:
         if not obj.material_slots: continue
 
         mesh = obj.data
@@ -33,9 +33,9 @@ def after_painting(context, props):
         for obj in context.selected_objects:
             obj.data.materials.clear()
 
-def estimate_ids(context, props):
+def estimate_ids(objects):
     count = 0
-    for obj in context.selected_objects:
+    for obj in objects:
         count += len(obj.material_slots)
 
     return count
