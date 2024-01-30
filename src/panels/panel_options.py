@@ -37,3 +37,7 @@ class BakeToIDOptionsPanel(bpy.types.Panel):
             target_settings_box = layout.box()
             for setting in target.connected_properties:
                 target_settings_box.prop(props, setting)
+
+        layout.separator()
+
+        layout.prop(props, "colors")

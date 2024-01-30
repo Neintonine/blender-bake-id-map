@@ -21,7 +21,6 @@ classes = (
     BakeToIDMapPanel,
     BakeToIDInfoPanel,
     BakeToIDOptionsPanel,
-    BakeToIDAdvancedMenu,
     BakeToIDProperties,
 )
 

@@ -1,6 +1,7 @@
 from bpy.types import (PropertyGroup)
 from bpy.props import (EnumProperty, BoolProperty, IntProperty, StringProperty)
 
+from src.types.colors import get_color_enum
 from src.types.sources import get_source_enum
 from src.types.targets import get_targets_enum
 
@@ -29,6 +30,13 @@ class BakeToIDProperties(PropertyGroup):
         name="Target",
         description="To where should the IDs should be baked to",
         default=get_targets_enum()[0][0]
+    )
+
+    colors: EnumProperty(
+        items=get_color_enum(),
+        name="Color Source",
+        description="From where to take the colors",
+        default=get_color_enum()[0][0]
     )
 
     source_materials_remove_all: BoolProperty(

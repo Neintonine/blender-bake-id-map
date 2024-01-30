@@ -21,4 +21,4 @@ class BakeToIDAdvancedMenu(bpy.types.Panel):
         layout.prop(props, "adv_total_satuations")
         layout.prop(props, "adv_total_brightnesses")
         layout.label(text="Max ID-count: " + str(
-            math.pow(math.pow(props.adv_total_hues, props.adv_total_satuations), props.adv_total_brightnesses)))
+            ))

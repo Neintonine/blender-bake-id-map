@@ -3,6 +3,7 @@ import math
 
 import bpy
 
+from ..types.colors import get_color
 from .. types.sources import get_source
 from .. types.targets import get_target
 
@@ -33,21 +34,8 @@ class BakeToIDMapOperator(bpy.types.Operator):
         if len(targets) < 1:
             return
 
-        totalTargets = len(targets)
-        colors = []
-
-        total_hues = props.adv_total_hues
-        total_satuations = props.adv_total_satuations
-        total_brightnesses = props.adv_total_brightnesses
-
-        satuations_break_point = math.pow(total_brightnesses, total_hues)
-
-        for i in range(totalTargets):
-            h = (i / total_hues) % 1
-            l = (math.ceil(i / total_hues) % total_brightnesses) / total_brightnesses
-            s = math.ceil(i / satuations_break_point) / total_satuations
-
-            colors.append(colorsys.hls_to_rgb(h, l, s))
+        color = get_color(props.colors)
+        colors = color.get_colors(props)
 
         target = get_target(props.target)
         self.paint_targets(props, target, targets, colors)
