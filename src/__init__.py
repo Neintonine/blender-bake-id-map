@@ -3,7 +3,7 @@ bl_info = {
     "author": "iedSoftworks",
     "description": "",
     # !VERSION
-    "blender": (2, 80, 0),
+    "blender": (2, 92, 0),
     "category": "Object"
 }
 

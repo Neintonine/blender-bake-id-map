@@ -16,7 +16,7 @@ class BakeToIDProperties(PropertyGroup):
         items=get_targets_enum(),
         name="Target",
         description="To where should the IDs should be baked to",
-        default="VERTEX_COLORS"
+        default=get_targets_enum()[0][0]
     )
 
     source_materials_remove_all : BoolProperty(
