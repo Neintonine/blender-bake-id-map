@@ -29,6 +29,11 @@ class BakeToIDProperties(PropertyGroup):
         name="Color Attribute",
         default="ID_MASK",
     )
+    target_vertex_color_override_attribute: BoolProperty(
+        name="Override Color Attribute",
+        default=True,
+        description="If set true, the attribute will be deleted and recreated, if it already exists. If set false, the data will just be overwritten."
+    )
 
     adv_total_hues: IntProperty(
         name="Total Hues",
