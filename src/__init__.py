@@ -10,7 +10,6 @@ bl_info = {
 import bpy
 
 from . panels.panel_options import BakeToIDOptionsPanel
-from . panels.panel_advanced import BakeToIDAdvancedMenu
 from . operators.bake_to_id_map import BakeToIDMapOperator
 from . panels.panel import BakeToIDMapPanel
 from . panels.panel_info import BakeToIDInfoPanel

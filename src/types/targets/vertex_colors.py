@@ -10,6 +10,7 @@ connected_properties = [
 
 def paint_targets(props, targets, colors):
     sorted_targets = {}
+    colors_amount = len(colors)
     for i in range(len(targets)):
         target = targets[i]
         obj = target[0]
@@ -18,7 +19,7 @@ def paint_targets(props, targets, colors):
         if obj not in sorted_targets:
             sorted_targets[obj] = []
 
-        sorted_targets[obj].append((indecies, colors[i]))
+        sorted_targets[obj].append((indecies, colors[i % colors_amount]))
 
     layer_name = props.target_vertex_color_attribute_name
     for mesh in sorted_targets:
