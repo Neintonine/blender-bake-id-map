@@ -1,5 +1,5 @@
-from bpy.types import (PropertyGroup)
-from bpy.props import (EnumProperty, BoolProperty, IntProperty, StringProperty)
+from bpy.types import (PropertyGroup, Palette)
+from bpy.props import (EnumProperty, BoolProperty, IntProperty, StringProperty, PointerProperty)
 
 from src.types.colors import get_color_enum
 from src.types.sources import get_source_enum
@@ -55,23 +55,8 @@ class BakeToIDProperties(PropertyGroup):
         description="If set true, the attribute will be deleted and recreated, if it already exists. If set false, the data will just be overwritten."
     )
 
-    adv_total_hues: IntProperty(
-        name="Total Hues",
-        default=10,
-        min=1,
-        soft_max=360,
-    )
-
-    adv_total_satuations: IntProperty(
-        name="Total Satuations",
-        default=10,
-        min=1,
-        soft_max=100,
-    )
-
-    adv_total_brightnesses: IntProperty(
-        name="Total Brightnesses",
-        default=10,
-        min=1,
-        soft_max=100,
+    colors_color_palette_palette: PointerProperty(
+        type=Palette,
+        name='Color Palette',
+        description="The Color Palette used for colors"
     )

@@ -1,5 +1,4 @@
 import colorsys
-import math
 
 color_id = 'GENERATED'
 name = 'Generated'

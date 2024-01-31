@@ -47,7 +47,8 @@ class BakeToIDMapOperator(bpy.types.Operator):
             return source.get_targets([context.active_object])
 
         if props.selection_mode == 'MULTIPLE_COMBINED':
-            return source.get_targets(context.selected_objects)
+            filtered_object = filter(lambda x: x.type == 'MESH', context.selected_objects)
+            return source.get_targets(list(filtered_object))
 
         if props.selection_mode == 'MULTIPLE_SEPARATE':
             result = []

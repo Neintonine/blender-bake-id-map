@@ -1,7 +1,8 @@
-from . import generated
+from . import generated, color_palette
 
 _colors = [
-    generated
+    generated,
+    color_palette
 ]
 
 
