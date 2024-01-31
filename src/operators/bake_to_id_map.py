@@ -1,6 +1,3 @@
-import colorsys
-import math
-
 import bpy
 
 from ..types.colors import get_color

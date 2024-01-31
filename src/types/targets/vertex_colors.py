@@ -23,10 +23,6 @@ def paint_targets(props, targets, colors):
 
     layer_name = props.target_vertex_color_attribute_name
     for mesh in sorted_targets:
-
-        if layer_name in mesh.attributes:
-            mesh.attributes.remove(mesh.attributes[layer_name])
-
         color_attribute = get_color_attribute(props, mesh.attributes, layer_name)
 
         for (indecies, color) in sorted_targets[mesh]:
