@@ -1,5 +1,6 @@
 import bpy
 
+from src.menu.id_mask_editor_options import IDEDITOR_IDMaskEditorOptionsMenu
 from src.operators.create_id_mask import CreateIDMaskOperator
 from src.operators.id_editor_create_id import IDEDITOR_CreateIDOperator
 from src.operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
@@ -74,6 +75,9 @@ class IDMaskEditorPanel(bpy.types.Panel):
         col = row.column(align=True)
         col.operator(IDEDITOR_CreateIDOperator.bl_idname, icon='ADD', text="")
         col.operator(IDEDITOR_RemoveIDOperator.bl_idname, icon='REMOVE', text="")
+        col.separator()
+
+        col.menu(IDEDITOR_IDMaskEditorOptionsMenu.bl_idname, icon='DOWNARROW_HLT', text="")
 
 
 
