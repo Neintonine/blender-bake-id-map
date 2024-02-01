@@ -1,6 +1,9 @@
 import bpy
 
+from src.operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
+from src.operators.id_editor_find_used_ids import IDEDITOR_FindUsedIDsOperator
 from src.operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
+from src.operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
 
 
 class IDMaskEditorIDList(bpy.types.UIList):
@@ -11,7 +14,19 @@ class IDMaskEditorIDList(bpy.types.UIList):
         split.alignment = 'LEFT'
         split.prop(attribute, 'color', text='')
 
-        split.emboss = 'NONE'
-        split2 = split.split(factor=0.75)
-        split2.prop(attribute, "name", text="")
-        split2.emboss = 'NORMAL'
+        row = split.row()
+        col = row.column()
+        col.alignment = 'RIGHT'
+        col.emboss = 'NONE'
+        col.prop(attribute, "name", text="")
+        col.emboss = 'NORMAL'
+
+        row1 = row.row(align=True)
+        row1.enabled = attribute.color_changed
+        reset_op = row1.operator(IDEDITOR_ColorResetOperator.bl_idname, icon='LOOP_BACK', text='')
+        reset_op.triggeredByList = True
+        reset_op.listId = _index
+
+        apply_op = row1.operator(IDEDITOR_ColorApplyOperator.bl_idname, icon='CHECKMARK', text='')
+        apply_op.triggeredByList = True
+        apply_op.listId = _index

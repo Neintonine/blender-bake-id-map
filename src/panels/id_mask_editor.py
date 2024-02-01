@@ -2,9 +2,11 @@ import bpy
 
 from src.menu.id_mask_editor_options import IDEDITOR_IDMaskEditorOptionsMenu
 from src.operators.create_id_mask import CreateIDMaskOperator
+from src.operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
 from src.operators.id_editor_create_id import IDEDITOR_CreateIDOperator
 from src.operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
 from src.operators.id_editor_remove_id import IDEDITOR_RemoveIDOperator
+from src.operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
 from src.operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
 from src.types.colors import get_color
 
@@ -61,7 +63,6 @@ class IDMaskEditorPanel(bpy.types.Panel):
         button_row.operator(IDEDITOR_PaintIDMaskOperator.bl_idname, text='Paint', icon='VPAINT_HLT')
         button_row.operator(IDEDITOR_SelectIDMaskOperator.bl_idname, text='Select', icon='SELECT_SET').isCalledFromEditor = True
 
-
         col.template_list(
             'IDMaskEditorIDList',
             'IDMaskEditorIDList',
@@ -72,13 +73,29 @@ class IDMaskEditorPanel(bpy.types.Panel):
             rows=3
         )
 
+        color_button_row = col.row(align=True)
+        has_color_changed = False
+        for id in properties.possible_ids:
+            if not id.color_changed:
+                continue
+            has_color_changed = True
+            break
+
+        color_button_row.enabled = has_color_changed
+
+        reset_op = color_button_row.operator(IDEDITOR_ColorResetOperator.bl_idname, icon='LOOP_BACK', text='Reset Colors')
+        reset_op.triggeredByList = False
+
+        apply_op = color_button_row.operator(IDEDITOR_ColorApplyOperator.bl_idname, icon='CHECKMARK', text='Apply Colors')
+        apply_op.triggeredByList = False
+
+
         col = row.column(align=True)
         col.operator(IDEDITOR_CreateIDOperator.bl_idname, icon='ADD', text="")
         col.operator(IDEDITOR_RemoveIDOperator.bl_idname, icon='REMOVE', text="")
         col.separator()
 
         col.menu(IDEDITOR_IDMaskEditorOptionsMenu.bl_idname, icon='DOWNARROW_HLT', text="")
-
 
 
     def draw_options(self, context, layout, props, element):

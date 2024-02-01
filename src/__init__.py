@@ -3,10 +3,12 @@ import bpy
 from src.menu import id_mask_select_menu
 from src.menu.id_mask_editor_options import IDEDITOR_IDMaskEditorOptionsMenu
 from src.operators.create_id_mask import CreateIDMaskOperator
+from src.operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
 from src.operators.id_editor_create_id import IDEDITOR_CreateIDOperator
 from src.operators.id_editor_find_used_ids import IDEDITOR_FindUsedIDsOperator
 from src.operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
 from src.operators.id_editor_remove_id import IDEDITOR_RemoveIDOperator
+from src.operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
 from src.operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
 from src.panels.id_mask_editor_id_list import IDMaskEditorIDList
 from src.properties.id_mask_editor_value_properties import IDMaskEditorValueProperties
@@ -45,7 +47,9 @@ classes = (
     IDEDITOR_PaintIDMaskOperator,
     IDEDITOR_SelectIDMaskOperator,
     IDEDITOR_FindUsedIDsOperator,
-    IDEDITOR_IDMaskEditorOptionsMenu
+    IDEDITOR_IDMaskEditorOptionsMenu,
+    IDEDITOR_ColorResetOperator,
+    IDEDITOR_ColorApplyOperator,
 )
 
 menu_additions = [
