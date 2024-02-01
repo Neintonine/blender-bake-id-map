@@ -4,6 +4,7 @@ from src.operators.create_id_mask import CreateIDMaskOperator
 from src.operators.id_editor_create_id import IDEDITOR_CreateIDOperator
 from src.operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
 from src.operators.id_editor_remove_id import IDEDITOR_RemoveIDOperator
+from src.operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
 from src.types.colors import get_color
 
 
@@ -55,7 +56,11 @@ class IDMaskEditorPanel(bpy.types.Panel):
         row = layout.row()
 
         col = row.column()
-        col.operator(IDEDITOR_PaintIDMaskOperator.bl_idname, icon='VPAINT_HLT')
+        button_row = col.row()
+        button_row.operator(IDEDITOR_PaintIDMaskOperator.bl_idname, text='Paint', icon='VPAINT_HLT')
+        button_row.operator(IDEDITOR_SelectIDMaskOperator.bl_idname, text='Select', icon='SELECT_SET').isCalledFromEditor = True
+
+
         col.template_list(
             'IDMaskEditorIDList',
             'IDMaskEditorIDList',

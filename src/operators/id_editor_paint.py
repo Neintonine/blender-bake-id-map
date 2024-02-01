@@ -2,8 +2,7 @@ import bpy
 
 class IDEDITOR_PaintIDMaskOperator(bpy.types.Operator):
     bl_idname = "id_mask_editor.paint_id_mask"
-    bl_label = "Paint"
-    bl_options = {'INTERNAL'}
+    bl_label = "Paint ID Mask"
 
     def execute(self, context):
         obj = context.active_object
@@ -24,7 +23,6 @@ class IDEDITOR_PaintIDMaskOperator(bpy.types.Operator):
 
         color_attribute = mesh.color_attributes.get(properties.target_attribute)
 
-        selected_polygons = []
         for polygon in mesh.polygons:
             if not polygon.select:
                 continue

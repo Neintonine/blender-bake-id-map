@@ -3,7 +3,7 @@ import bpy
 
 class CreateIDMaskOperator(bpy.types.Operator):
     bl_idname = "id_mask_editor.create_id_mask_attribute"
-    bl_label = ""
+    bl_label = "Create ID Mask - Attribute"
     bl_options = {'INTERNAL'}
 
     @classmethod
