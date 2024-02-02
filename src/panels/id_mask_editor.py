@@ -59,9 +59,6 @@ class IDMaskEditorPanel(bpy.types.Panel):
         row = layout.row()
 
         col = row.column()
-        button_row = col.row()
-        button_row.operator(IDEDITOR_PaintIDMaskOperator.bl_idname, text='Paint', icon='VPAINT_HLT')
-        button_row.operator(IDEDITOR_SelectIDMaskOperator.bl_idname, text='Select', icon='SELECT_SET').isCalledFromEditor = True
 
         col.template_list(
             'IDMaskEditorIDList',
@@ -73,7 +70,11 @@ class IDMaskEditorPanel(bpy.types.Panel):
             rows=3
         )
 
-        color_button_row = col.row(align=True)
+        button_row = col.row()
+        button_row.operator(IDEDITOR_PaintIDMaskOperator.bl_idname, text='Paint', icon='VPAINT_HLT')
+        button_row.operator(IDEDITOR_SelectIDMaskOperator.bl_idname, text='Select', icon='SELECT_SET').isCalledFromEditor = True
+
+        color_button_row = button_row.row(align=True)
         has_color_changed = False
         for id in properties.possible_ids:
             if not id.color_changed:
