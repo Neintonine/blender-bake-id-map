@@ -1,6 +1,6 @@
 import bpy
 
-from src.operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
+from .. operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
 
 def id_mask_select_menu_function(self, context):
     self.layout.operator(IDEDITOR_SelectIDMaskOperator.bl_idname).isCalledFromEditor = False

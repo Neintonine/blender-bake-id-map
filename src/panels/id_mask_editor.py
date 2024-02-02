@@ -1,14 +1,14 @@
 import bpy
 
-from src.menu.id_mask_editor_options import IDEDITOR_IDMaskEditorOptionsMenu
-from src.operators.create_id_mask import CreateIDMaskOperator
-from src.operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
-from src.operators.id_editor_create_id import IDEDITOR_CreateIDOperator
-from src.operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
-from src.operators.id_editor_remove_id import IDEDITOR_RemoveIDOperator
-from src.operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
-from src.operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
-from src.types.colors import get_color
+from .. menu.id_mask_editor_options import IDEDITOR_IDMaskEditorOptionsMenu
+from .. operators.create_id_mask import CreateIDMaskOperator
+from .. operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
+from .. operators.id_editor_create_id import IDEDITOR_CreateIDOperator
+from .. operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
+from .. operators.id_editor_remove_id import IDEDITOR_RemoveIDOperator
+from .. operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
+from .. operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
+from .. types.colors import get_color
 
 
 class IDMaskEditorPanel(bpy.types.Panel):

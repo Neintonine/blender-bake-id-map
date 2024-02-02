@@ -1,7 +1,6 @@
 import bpy
 
-from src.properties.id_mask_editor_value_properties import IDMaskEditorValueProperties
-from src.types.colors import get_color
+from .. types.colors import get_color
 
 
 class IDEDITOR_CreateIDOperator(bpy.types.Operator):

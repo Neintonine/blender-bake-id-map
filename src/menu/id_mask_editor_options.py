@@ -1,6 +1,6 @@
 import bpy
 
-from src.operators.id_editor_find_used_ids import IDEDITOR_FindUsedIDsOperator
+from .. operators.id_editor_find_used_ids import IDEDITOR_FindUsedIDsOperator
 
 
 class IDEDITOR_IDMaskEditorOptionsMenu(bpy.types.Menu):

@@ -1,9 +1,7 @@
 import bpy
 
-from src.operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
-from src.operators.id_editor_find_used_ids import IDEDITOR_FindUsedIDsOperator
-from src.operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
-from src.operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
+from .. operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
+from .. operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
 
 
 class IDMaskEditorIDList(bpy.types.UIList):

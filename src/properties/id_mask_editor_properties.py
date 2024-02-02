@@ -3,8 +3,8 @@ import bpy
 from bpy.types import (PropertyGroup, Palette, FloatColorAttribute)
 from bpy.props import (EnumProperty, BoolProperty, IntProperty, StringProperty, PointerProperty, CollectionProperty)
 
-from src.properties.id_mask_editor_value_properties import IDMaskEditorValueProperties
-from src.types.colors import get_color_enum
+from .. properties.id_mask_editor_value_properties import IDMaskEditorValueProperties
+from .. types.colors import get_color_enum
 
 def on_target_attribute_set(self, value):
     return None

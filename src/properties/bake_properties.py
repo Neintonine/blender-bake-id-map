@@ -1,9 +1,9 @@
 from bpy.types import (PropertyGroup, Palette)
 from bpy.props import (EnumProperty, BoolProperty, IntProperty, StringProperty, PointerProperty)
 
-from src.types.colors import get_color_enum
-from src.types.sources import get_source_enum
-from src.types.targets import get_targets_enum
+from .. types.colors import get_color_enum
+from .. types.sources import get_source_enum
+from .. types.targets import get_targets_enum
 
 
 class BakeToIDProperties(PropertyGroup):

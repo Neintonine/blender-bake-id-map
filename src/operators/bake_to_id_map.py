@@ -1,6 +1,6 @@
 import bpy
 
-from ..types.colors import get_color
+from .. types.colors import get_color
 from .. types.sources import get_source
 from .. types.targets import get_target
 

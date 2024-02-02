@@ -1,6 +1,5 @@
 import bpy
 
-
 class IDEDITOR_SelectIDMaskOperator(bpy.types.Operator):
     bl_idname = "id_mask_editor.select_id_mask"
     bl_label = "Select by ID Mask"

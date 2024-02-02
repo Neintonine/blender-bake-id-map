@@ -1,17 +1,17 @@
 import bpy
 
-from src.menu import id_mask_select_menu
-from src.menu.id_mask_editor_options import IDEDITOR_IDMaskEditorOptionsMenu
-from src.operators.create_id_mask import CreateIDMaskOperator
-from src.operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
-from src.operators.id_editor_create_id import IDEDITOR_CreateIDOperator
-from src.operators.id_editor_find_used_ids import IDEDITOR_FindUsedIDsOperator
-from src.operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
-from src.operators.id_editor_remove_id import IDEDITOR_RemoveIDOperator
-from src.operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
-from src.operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
-from src.panels.id_mask_editor_id_list import IDMaskEditorIDList
-from src.properties.id_mask_editor_value_properties import IDMaskEditorValueProperties
+from . menu import id_mask_select_menu
+from . menu.id_mask_editor_options import IDEDITOR_IDMaskEditorOptionsMenu
+from . operators.create_id_mask import CreateIDMaskOperator
+from . operators.id_editor_apply_color import IDEDITOR_ColorApplyOperator
+from . operators.id_editor_create_id import IDEDITOR_CreateIDOperator
+from . operators.id_editor_find_used_ids import IDEDITOR_FindUsedIDsOperator
+from . operators.id_editor_paint import IDEDITOR_PaintIDMaskOperator
+from . operators.id_editor_remove_id import IDEDITOR_RemoveIDOperator
+from . operators.id_editor_revert_color import IDEDITOR_ColorResetOperator
+from . operators.id_mask_select import IDEDITOR_SelectIDMaskOperator
+from . panels.id_mask_editor_id_list import IDMaskEditorIDList
+from . properties.id_mask_editor_value_properties import IDMaskEditorValueProperties
 from . panels.bake_panel_options import BakeToIDOptionsPanel
 from . operators.bake_to_id_map import BakeToIDMapOperator
 from . panels.bake_panel import BakeToIDMapPanel
@@ -19,7 +19,7 @@ from . panels.bake_panel_info import BakeToIDInfoPanel
 from . panels.id_mask_editor import IDMaskEditorPanel
 from . properties.bake_properties import BakeToIDProperties
 
-from src.properties.id_mask_editor_properties import IDMaskEditorProperties
+from . properties.id_mask_editor_properties import IDMaskEditorProperties
 
 bl_info = {
     "name": "ID Mask - Tools",
